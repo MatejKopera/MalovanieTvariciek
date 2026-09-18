@@ -1,0 +1,11 @@
+# Lokálny balík pre ručné nahratie
+public-site/
+public-site.zip
+
+# Pôvodné vizuálne návrhy nie sú súčasťou webu
+navrh-1.png
+navrh-2.png
+
+# Lokálne systémové súbory
+.DS_Store
+Thumbs.db
