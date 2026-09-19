@@ -50,9 +50,8 @@
 
   <header class="site-header" id="top">
     <div class="container nav-wrap">
-      <a class="brand" href="#top" aria-label="Maľovanie tváričiek – domov">
-        <img src="fotky-web/logo.png" alt="Logo Maľovanie tváričiek" />
-        <span>Maľovanie<br />tváričiek</span>
+      <a class="brand header-logo" href="#top" aria-label="Maľovanie tváričiek – domov">
+        <img src="fotky-web/logo-horizontal.png" width="1000" height="195" alt="Logo Maľovanie tváričiek" />
       </a>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Otvoriť navigáciu">
@@ -346,25 +345,26 @@
           <input type="hidden" name="_url" value="https://malovanie-tvariciek.pages.dev/#kontakt" />
           <input type="hidden" name="_captcha" value="false" />
           <label class="form-honeypot" aria-hidden="true">Toto pole nechaj prázdne<input type="text" name="_honey" tabindex="-1" autocomplete="off" /></label>
+          <p class="form-required-note"><span aria-hidden="true">*</span> Povinné sú iba meno, e-mail a telefón.</p>
           <div class="form-row">
-            <label>Meno a priezvisko<input type="text" name="Meno" autocomplete="name" required placeholder="Tvoje meno" /></label>
-            <label>E-mail<input type="email" name="email" autocomplete="email" required placeholder="tvoj@email.sk" /></label>
+            <label>Meno a priezvisko *<input type="text" name="Meno" autocomplete="name" required placeholder="Tvoje meno" /></label>
+            <label>E-mail *<input type="email" name="email" autocomplete="email" required placeholder="tvoj@email.sk" /></label>
           </div>
           <div class="form-row">
-            <label>Telefón<input type="tel" name="Telefon" autocomplete="tel" placeholder="Napr. 0900 000 000" /></label>
-            <label>Dátum akcie<input type="date" name="Datum" required /></label>
+            <label>Telefón *<input type="tel" name="Telefon" autocomplete="tel" required placeholder="Napr. 0900 000 000" /></label>
+            <label>Dátum akcie<input type="date" name="Datum" /></label>
           </div>
           <div class="form-row">
-            <label>Miesto<input type="text" name="Miesto" autocomplete="address-level2" required placeholder="Mesto / lokalita" /></label>
+            <label>Miesto<input type="text" name="Miesto" autocomplete="address-level2" placeholder="Mesto / lokalita" /></label>
             <label>Typ akcie
-              <select name="Typ akcie" required>
+              <select name="Typ akcie">
                 <option value="">Vyber typ akcie</option>
                 <option>Detská oslava</option><option>Firemná akcia</option><option>Festival</option><option>Svadba</option><option>Mestské podujatie</option><option>Školská akcia</option><option>Iné</option>
               </select>
             </label>
           </div>
           <label>Približný počet detí<input type="number" name="Pocet deti" min="1" inputmode="numeric" placeholder="Napr. 15" /></label>
-          <label>Správa<textarea name="Sprava" rows="4" required placeholder="Povedz mi viac o akcii, čase alebo predstave…"></textarea></label>
+          <label>Správa<textarea name="Sprava" rows="4" placeholder="Povedz mi viac o akcii, čase alebo predstave…"></textarea></label>
           <button class="button button-primary button-submit" type="submit"><span class="button-label">Chcem nezáväznú ponuku</span> <span aria-hidden="true">→</span></button>
           <p class="form-note">Údaje použijem iba na vybavenie tvojho dopytu. <a href="ochrana-osobnych-udajov.html">Ako chránim osobné údaje?</a></p>
         </form>
@@ -374,9 +374,8 @@
 
   <footer class="site-footer">
     <div class="container footer-top">
-      <a class="brand footer-brand" href="#top">
-        <img src="fotky-web/logo.png" alt="" />
-        <span>Maľovanie<br />tváričiek</span>
+      <a class="footer-logo" href="#top" aria-label="Maľovanie tváričiek – domov">
+        <img src="fotky-web/logo-horizontal.png" width="1000" height="195" alt="Logo Maľovanie tváričiek" />
       </a>
       <p>Farby a úsmevy na vašom podujatí. ♡</p>
       <div class="footer-socials" aria-label="Sociálne siete">
