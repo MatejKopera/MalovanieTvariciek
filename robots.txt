@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://malovanie-tvariciek.pages.dev/sitemap.xml

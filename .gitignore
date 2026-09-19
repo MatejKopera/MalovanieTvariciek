@@ -1,11 +1,24 @@
-# Lokálny balík pre ručné nahratie
-public-site/
-public-site.zip
+# Originálne fotografie zostávajú iba v počítači
+/fotky-originaly/*
+!/fotky-originaly/README.md
 
-# Pôvodné vizuálne návrhy nie sú súčasťou webu
-navrh-1.png
-navrh-2.png
+# Staré exporty a pracovné návrhy
+/public-site/
+/public-site.zip
+/navrh-*.png
 
-# Lokálne systémové súbory
+# Lokálne nastavenia a prípadné tajné kľúče
+/.env
+/.env.*
+!/.env.example
+/.vscode/
+
+# Dočasné súbory a logy
+*.log
+*.tmp
+*.bak
+
+# Systémové súbory
 .DS_Store
 Thumbs.db
+Desktop.ini

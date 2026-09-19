@@ -76,11 +76,24 @@ const toast = document.querySelector('#toast');
 let toastTimer;
 
 bookingForm?.addEventListener('submit', (event) => {
-  event.preventDefault();
-  if (!bookingForm.reportValidity()) return;
-  toast.classList.add('is-visible');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 5200);
+  if (!bookingForm.reportValidity()) {
+    event.preventDefault();
+    return;
+  }
+
+  const submitButton = bookingForm.querySelector('.button-submit');
+  const buttonLabel = submitButton?.querySelector('.button-label');
+  if (submitButton) submitButton.disabled = true;
+  if (buttonLabel) buttonLabel.textContent = 'Odosielam…';
 });
+
+const pageUrl = new URL(window.location.href);
+if (pageUrl.searchParams.get('odoslane') === '1') {
+  toast?.classList.add('is-visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast?.classList.remove('is-visible'), 6500);
+  pageUrl.searchParams.delete('odoslane');
+  window.history.replaceState({}, '', `${pageUrl.pathname}${pageUrl.search}${pageUrl.hash}`);
+}
 
 document.querySelector('#year').textContent = new Date().getFullYear();
