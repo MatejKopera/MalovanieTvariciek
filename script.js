@@ -73,11 +73,26 @@ document.addEventListener('keydown', (event) => {
 
 const bookingForm = document.querySelector('#booking-form');
 const toast = document.querySelector('#toast');
+const toastIcon = document.querySelector('#toast-icon');
+const toastTitle = document.querySelector('#toast-title');
+const toastMessage = document.querySelector('#toast-message');
 let toastTimer;
 
-bookingForm?.addEventListener('submit', (event) => {
+function showToast({ error = false, title, message }) {
+  if (!toast) return;
+  toast.classList.toggle('is-error', error);
+  toastIcon.textContent = error ? '!' : '✓';
+  toastTitle.textContent = title;
+  toastMessage.textContent = message;
+  toast.classList.add('is-visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 7000);
+}
+
+bookingForm?.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
   if (!bookingForm.reportValidity()) {
-    event.preventDefault();
     return;
   }
 
@@ -85,15 +100,39 @@ bookingForm?.addEventListener('submit', (event) => {
   const buttonLabel = submitButton?.querySelector('.button-label');
   if (submitButton) submitButton.disabled = true;
   if (buttonLabel) buttonLabel.textContent = 'Odosielam…';
-});
 
-const pageUrl = new URL(window.location.href);
-if (pageUrl.searchParams.get('odoslane') === '1') {
-  toast?.classList.add('is-visible');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast?.classList.remove('is-visible'), 6500);
-  pageUrl.searchParams.delete('odoslane');
-  window.history.replaceState({}, '', `${pageUrl.pathname}${pageUrl.search}${pageUrl.hash}`);
-}
+  try {
+    const formData = new FormData(bookingForm);
+    const payload = Object.fromEntries(formData.entries());
+    const response = await fetch('https://formsubmit.co/ajax/beatka.juritkova@gmail.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+    const result = await response.json().catch(() => ({}));
+
+    if (!response.ok || result.success === false || result.success === 'false') {
+      throw new Error('FormSubmit request failed');
+    }
+
+    bookingForm.reset();
+    showToast({
+      title: 'Správa bola odoslaná',
+      message: 'Ďakujem za tvoj dopyt. Ozvem sa ti čo najskôr.',
+    });
+  } catch (error) {
+    showToast({
+      error: true,
+      title: 'Správu sa nepodarilo odoslať',
+      message: 'Skús to, prosím, znova alebo mi napíš priamo na e-mail.',
+    });
+  } finally {
+    if (submitButton) submitButton.disabled = false;
+    if (buttonLabel) buttonLabel.textContent = 'Chcem nezáväznú ponuku';
+  }
+});
 
 document.querySelector('#year').textContent = new Date().getFullYear();

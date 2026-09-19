@@ -258,6 +258,7 @@ h1 span { background: var(--gradient); background-clip: text; -webkit-background
 .lightbox-index { margin-bottom: 10px; color: var(--pink-dark); font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
 .toast { position: fixed; z-index: 600; right: 22px; bottom: 22px; display: flex; align-items: flex-start; gap: 14px; width: min(400px, calc(100% - 44px)); padding: 18px; border-radius: 18px; background: var(--ink); color: white; box-shadow: 0 20px 70px rgba(23,41,71,.35); transform: translateY(140%); opacity: 0; transition: .35s ease; }
 .toast.is-visible { transform: translateY(0); opacity: 1; }
+.toast.is-error { background: #79233f; }
 
 .legal-page { background: linear-gradient(180deg, #fff 0%, #fff8fb 100%); }
 .legal-nav { justify-content: space-between; }
@@ -275,6 +276,7 @@ h1 span { background: var(--gradient); background-clip: text; -webkit-background
 .legal-content a { color: var(--pink-dark); font-weight: 750; text-decoration: underline; text-underline-offset: 2px; }
 .legal-footer { padding-top: 10px; }
 .toast > span { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--pink); font-weight: 900; }
+.toast.is-error > span { background: #fff; color: #79233f; }
 .toast strong { display: block; }
 .toast p { margin: 3px 0 0; color: #d9dfeb; font-size: 13px; line-height: 1.45; }
 

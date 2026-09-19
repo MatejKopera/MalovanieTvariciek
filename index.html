@@ -343,8 +343,8 @@
         <form class="booking-form" id="booking-form" action="https://formsubmit.co/beatka.juritkova@gmail.com" method="POST" accept-charset="UTF-8">
           <input type="hidden" name="_subject" value="Nový dopyt z webu Maľovanie tváričiek" />
           <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_next" value="https://malovanie-tvariciek.pages.dev/?odoslane=1#kontakt" />
           <input type="hidden" name="_url" value="https://malovanie-tvariciek.pages.dev/#kontakt" />
+          <input type="hidden" name="_captcha" value="false" />
           <label class="form-honeypot" aria-hidden="true">Toto pole nechaj prázdne<input type="text" name="_honey" tabindex="-1" autocomplete="off" /></label>
           <div class="form-row">
             <label>Meno a priezvisko<input type="text" name="Meno" autocomplete="name" required placeholder="Tvoje meno" /></label>
@@ -419,8 +419,8 @@
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite">
-    <span>✓</span>
-    <div><strong>Správa bola odoslaná</strong><p>Ďakujem za tvoj dopyt. Ozvem sa ti čo najskôr.</p></div>
+    <span id="toast-icon">✓</span>
+    <div><strong id="toast-title">Správa bola odoslaná</strong><p id="toast-message">Ďakujem za tvoj dopyt. Ozvem sa ti čo najskôr.</p></div>
   </div>
 
   <script src="script.js"></script>
