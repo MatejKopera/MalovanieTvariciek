@@ -45,7 +45,7 @@ Aktívna sada obsahuje 30 uložených podkladov z návrhového kontextu Figmy a 
 
 ## Formulár a ovládanie
 
-FormSubmit odosiela dopyt na existujúcu adresu Beáty. Povinné sú meno/firma a e-mail; dátum a správa sú voliteľné. Počas odosielania sa nedá odoslať ďalší dopyt. Chyba alebo prekročenie 20 sekúnd zachová údaje; potvrdený úspech ich vymaže. Hlásenie zostáva pri formulári. Zachované je ochranné honeypot pole.
+FormSubmit odosiela dopyt na existujúcu adresu Beáty. Povinné sú meno/firma a e-mail; dátum a správa sú voliteľné. Počas odosielania sa nedá odoslať ďalší dopyt. Chyba alebo prekročenie 60 sekúnd zachová údaje; potvrdený úspech ich vymaže. Pri časovom limite hlásenie upozorní, že služba už mohla správu prijať, aby návštevník neposlal duplicitu. Hlásenie zostáva pri formulári. Zachované je ochranné honeypot pole.
 
 Galéria sťahuje veľkú fotografiu až po otvorení. Dialóg má priehľadné pozadie bez širokého obdĺžnika okolo fotky a vopred rezervované prirodzené rozmery. Počas načítania ukazuje indikátor; veľká fotografia sa objaví až po dekódovaní, jemným prechodom. Pri chybe zostáva dostupný náhľad a chybové hlásenie. Dokončenie starej požiadavky po zatvorení nemôže prepísať inú otvorenú fotku. Zatvorenie funguje tlačidlom, Escape alebo kliknutím mimo fotografie; Tab ostáva v dialógu a fokus sa vráti na pôvodný obrázok. Pri obmedzenom pohybe sa vypnú animácie, prechody aj plynulé posúvanie.
 
@@ -65,4 +65,4 @@ Vizuálne overovať obe stránky pri šírkach 360, 390, 768, 1024 a 1440 px. V�
 
 Projekt je statický web bez build kroku. V Cloudflare Pages použite Git integráciu, produkčnú vetvu `main` a koreňový priečinok repozitára ako výstupný priečinok.
 
-Doména v canonical, sociálnych metadátach, formulári a sitemap zostáva `https://malovanie-tvariciek.pages.dev/`. Táto úprava bola pripravená iba lokálne; publikovanie je samostatný krok. Do commitu nepridávať originály, exporty Figmy ani pomocný priečinok `.qa/`.
+Formulár používa aktuálnu verejnú doménu `https://malovanietvariciek.pages.dev/`. Canonical, sociálne metadáta a sitemap zatiaľ obsahujú pôvodnú doménu `https://malovanie-tvariciek.pages.dev/`. Pri požiadavke na aktiváciu FormSubmit treba potvrdiť aktivačný e-mail pre verejný web. Do commitu nepridávať originály, exporty Figmy ani pomocný priečinok `.qa/`.

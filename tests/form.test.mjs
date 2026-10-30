@@ -8,6 +8,7 @@ const source = await readFile(new URL("../script.js", import.meta.url), "utf8");
 function setup(transport, { valid = true, honey = "" } = {}) {
   let submit,
     timer,
+    timerDelay,
     calls = 0;
   const label = { textContent: "" };
   const button = { disabled: false, querySelector: () => label };
@@ -57,8 +58,9 @@ function setup(transport, { valid = true, honey = "" } = {}) {
       calls++;
       return transport(...args);
     },
-    setTimeout: (fn) => {
+    setTimeout: (fn, delay) => {
       timer = fn;
+      timerDelay = delay;
       return 1;
     },
     clearTimeout() {},
@@ -72,6 +74,7 @@ function setup(transport, { valid = true, honey = "" } = {}) {
     submit: () => submit({ preventDefault() {} }),
     calls: () => calls,
     timeout: () => timer(),
+    advance: (milliseconds) => { if (milliseconds >= timerDelay) timer(); },
   };
 }
 const response = (success, ok = true) => ({
@@ -138,6 +141,17 @@ test("slow requests disable duplicate submissions until completion", async () =>
   await pending;
   assert.equal(s.button.disabled, false);
 });
+
+test("provider activation requirement is distinguished from a network failure", async () => {
+  const s = setup(() => ({ ok: true, json: async () => ({
+    success: "false", message: "This form needs Activation.",
+  }) }));
+  await s.submit();
+  assert.equal(s.form.resets, 0);
+  assert.equal(s.button.disabled, false);
+  assert.match(s.status.textContent, /ešte nie je aktivované/);
+  assert.ok(s.classes.has("is-error"));
+});
 test("timed out requests preserve data and allow a retry", async () => {
   const s = setup(
     (_, options) =>
@@ -153,4 +167,19 @@ test("timed out requests preserve data and allow a retry", async () => {
   assert.equal(s.form.resets, 0);
   assert.equal(s.button.disabled, false);
   assert.ok(s.classes.has("is-error"));
+  assert.match(s.status.textContent, /už mohla byť prijatá/);
+});
+
+test("a service response after 25 seconds still confirms success", async () => {
+  let resolve;
+  const s = setup((_, options) => new Promise((done, reject) => {
+    resolve = done;
+    options.signal.addEventListener("abort", () => reject(Error("timeout")));
+  }));
+  const pending = s.submit();
+  s.advance(25000);
+  resolve(response(true));
+  await pending;
+  assert.equal(s.form.resets, 1);
+  assert.match(s.status.textContent, /bola odoslaná/);
 });

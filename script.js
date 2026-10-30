@@ -128,7 +128,8 @@ bookingForm?.addEventListener("submit", async (event) => {
   bookingForm.setAttribute("aria-busy", "true");
   formStatus.hidden = true;
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 20000);
+  const timeout = setTimeout(() => controller.abort(), 60000);
+  let needsActivation = false;
   try {
     const response = await fetch(
       "https://formsubmit.co/ajax/beatka.juritkova@gmail.com",
@@ -143,6 +144,7 @@ bookingForm?.addEventListener("submit", async (event) => {
       },
     );
     const result = await response.json();
+    needsActivation = /activat/i.test(String(result.message || ""));
     if (!response.ok || (result.success !== true && result.success !== "true"))
       throw new Error("Submission rejected");
     bookingForm.reset();
@@ -154,8 +156,11 @@ bookingForm?.addEventListener("submit", async (event) => {
       "Ďakujem! Správa bola odoslaná. Ozvem sa ti čo najskôr.";
   } catch {
     formStatus.classList.add("is-error");
-    formStatus.textContent =
-      "Správu sa nepodarilo odoslať. Údaje zostali vyplnené. Skús to znova alebo mi napíš na beatka.juritkova@gmail.com.";
+    formStatus.textContent = needsActivation
+      ? "Odosielanie formulára ešte nie je aktivované. Vaša správa nebola odoslaná a údaje zostali vyplnené. Napíšte mi na beatka.juritkova@gmail.com alebo zavolajte na +421 951 192 229."
+      : controller.signal.aborted
+      ? "Potvrdenie odoslania trvá príliš dlho. Správa už mohla byť prijatá, preto ju neposielajte hneď znova. Údaje zostali vyplnené. Kontaktujte ma na beatka.juritkova@gmail.com."
+      : "Správu sa nepodarilo odoslať. Údaje zostali vyplnené. Skúste to znova alebo mi napíšte na beatka.juritkova@gmail.com.";
   } finally {
     clearTimeout(timeout);
     sending = false;
