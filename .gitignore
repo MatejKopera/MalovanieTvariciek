@@ -6,6 +6,8 @@
 /public-site/
 /public-site.zip
 /navrh-*.png
+/figma-export/
+/.qa/
 
 # Lokálne nastavenia a prípadné tajné kľúče
 /.env
@@ -22,3 +24,5 @@
 .DS_Store
 Thumbs.db
 Desktop.ini
+__pycache__/
+*.py[cod]

@@ -1,0 +1,342 @@
+[
+  {
+    "id": "tiger",
+    "alt": "Dievča s tigrom namaľovaným na tvári",
+    "node": "11292:554",
+    "source": "fotky-originaly/figma-fotografie/tiger.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 462,
+    "sourceHeight": 1024,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "ruze",
+    "alt": "Ružové ruže namaľované na ruke",
+    "node": "11292:555",
+    "source": "fotky-originaly/figma-fotografie/ruze.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 1153,
+    "sourceHeight": 2048,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "psik",
+    "alt": "Dievča s ružovým psíkom namaľovaným na tvári",
+    "node": "11292:617",
+    "source": "fotky-originaly/figma-fotografie/psik.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 1846,
+    "sourceHeight": 4096,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "korytnacka",
+    "alt": "Zelená korytnačka namaľovaná na ruke",
+    "node": "11292:597",
+    "source": "fotky-originaly/figma-fotografie/korytnacka.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 1024,
+    "sourceHeight": 522,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "farebne-kvety",
+    "alt": "Farebné kvety a dúha na tvári dievčaťa",
+    "node": "11292:557",
+    "source": "fotky-originaly/figma-fotografie/farebne-kvety.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 462,
+    "sourceHeight": 1024,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "ruzove-kvety",
+    "alt": "Ružové kvety s bielymi ornamentmi na ruke",
+    "node": "11292:608",
+    "source": "fotky-originaly/figma-fotografie/ruzove-kvety.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 1152,
+    "sourceHeight": 2048,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "ruzovy-kvet",
+    "alt": "Ružový kvet so zelenými lístkami na tvári",
+    "node": "11292:607",
+    "source": "fotky-originaly/figma-fotografie/ruzovy-kvet.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 1153,
+    "sourceHeight": 2048,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "margaretky",
+    "alt": "Biele margarétky namaľované na tvári",
+    "node": "11292:606",
+    "source": "fotky-originaly/figma-fotografie/margaretky.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 462,
+    "sourceHeight": 1024,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "biele-kvety",
+    "alt": "Usmiate dievča s bielymi kvetmi na tvári",
+    "node": "11292:618",
+    "source": "fotky-originaly/figma-fotografie/biele-kvety.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 683,
+    "sourceHeight": 1024,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "leopard",
+    "alt": "Dievča s farebným leopardím motívom na tvári",
+    "node": "11292:619",
+    "source": "fotky-originaly/figma-fotografie/leopard.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 2000,
+    "sourceHeight": 3000,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "halloween",
+    "alt": "Dieťa s halloweenským motívom a čarodejníckym klobúkom",
+    "node": "11292:612",
+    "source": "fotky-originaly/figma-fotografie/halloween.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 1154,
+    "sourceHeight": 2048,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "pavucina",
+    "alt": "Oranžový motív s pavúkom a pavučinou na tvári",
+    "node": "11292:611",
+    "source": "fotky-originaly/figma-fotografie/pavucina.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 1153,
+    "sourceHeight": 2048,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "maska",
+    "alt": "Dieťa s farebnou maskou namaľovanou okolo očí",
+    "node": "11292:610",
+    "source": "fotky-originaly/figma-fotografie/maska.jpg",
+    "sourceKind": "verified-figma-export",
+    "sourceWidth": 843,
+    "sourceHeight": 1123,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "jesenne-licenie",
+    "alt": "Oranžovo-čierne umelecké maľovanie na tvári ženy",
+    "node": "11292:613",
+    "source": "fotky-originaly/figma-fotografie/jesenne-licenie.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 923,
+    "sourceHeight": 2048,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "tekvica",
+    "alt": "Muž s halloweenskou tekvicou namaľovanou na tvári",
+    "node": "11292:614",
+    "source": "fotky-originaly/figma-fotografie/tekvica.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 923,
+    "sourceHeight": 2048,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "modre-ornamenty",
+    "alt": "Modré ornamenty na tvári ženy",
+    "node": "11292:615",
+    "source": "fotky-originaly/figma-fotografie/modre-ornamenty.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 923,
+    "sourceHeight": 2048,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "futbal",
+    "alt": "Futbalová lopta s čiernymi ornamentmi na ruke",
+    "node": "11292:600",
+    "source": "fotky-originaly/figma-fotografie/futbal.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 577,
+    "sourceHeight": 1024,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "futbal-kvety",
+    "alt": "Futbalová lopta s kvetmi na líci",
+    "node": "11292:601",
+    "source": "fotky-originaly/figma-fotografie/futbal-kvety.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 577,
+    "sourceHeight": 1024,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "modry-futbal",
+    "alt": "Futbalová lopta s modrým ornamentom na ruke",
+    "node": "11292:602",
+    "source": "fotky-originaly/figma-fotografie/modry-futbal.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 577,
+    "sourceHeight": 1024,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "zeleny-tiger",
+    "alt": "Chlapec so zeleným tigrom namaľovaným na tvári",
+    "node": "11292:603",
+    "source": "fotky-originaly/figma-fotografie/zeleny-tiger.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 577,
+    "sourceHeight": 1024,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "drak",
+    "alt": "Zelený drak namaľovaný na tvári chlapca",
+    "node": "11292:621",
+    "source": "fotky-originaly/figma-fotografie/drak.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 923,
+    "sourceHeight": 2048,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "lopta",
+    "alt": "Malý futbalový motív na líci dieťaťa",
+    "node": "11292:622",
+    "source": "fotky-originaly/figma-fotografie/lopta.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 1153,
+    "sourceHeight": 2048,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "modre-kvety",
+    "alt": "Bielo-modré kvety namaľované okolo oka",
+    "node": "11292:623",
+    "source": "fotky-originaly/figma-fotografie/modre-kvety.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 1154,
+    "sourceHeight": 2048,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "modra-macka",
+    "alt": "Dievča s modrou mačkou namaľovanou na tvári",
+    "node": "11292:624",
+    "source": "fotky-originaly/figma-fotografie/modra-macka.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 1154,
+    "sourceHeight": 2048,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "dracik",
+    "alt": "Zelený dráčik namaľovaný na ruke",
+    "node": "11292:625",
+    "source": "fotky-originaly/figma-fotografie/dracik.jpg",
+    "sourceKind": "verified-figma-export",
+    "sourceWidth": 843,
+    "sourceHeight": 1123,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "kvetinove-licenie",
+    "alt": "Žena s ružovými kvetmi namaľovanými na tvári",
+    "node": "11292:604",
+    "source": "fotky-originaly/figma-fotografie/kvetinove-licenie.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 1042,
+    "sourceHeight": 2312,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "meduzy",
+    "alt": "Ružové medúzy namaľované na ruke",
+    "node": "11292:605",
+    "source": "fotky-originaly/figma-fotografie/meduzy.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 1374,
+    "sourceHeight": 3048,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "ruza-na-tvari",
+    "alt": "Dievča s ružou namaľovanou nad okom",
+    "node": "11292:598",
+    "source": "fotky-originaly/figma-fotografie/ruza-na-tvari.jpg",
+    "sourceKind": "verified-figma-export",
+    "sourceWidth": 843,
+    "sourceHeight": 1119,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "kvetinova-korunka",
+    "alt": "Dievča s ružovou kvetinovou korunkou na čele",
+    "node": "11292:599",
+    "source": "fotky-originaly/figma-fotografie/kvetinova-korunka.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 577,
+    "sourceHeight": 1024,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "ruzove-licenie",
+    "alt": "Ružové kvetinové maľovanie na tvári dievčaťa",
+    "node": "11292:556",
+    "source": "fotky-originaly/figma-fotografie/ruzove-licenie.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 577,
+    "sourceHeight": 1024,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "modry-motyl",
+    "alt": "Dievča s modrým motýľom a kvetmi na tvári",
+    "node": "11292:616",
+    "source": "fotky-originaly/figma-fotografie/modry-motyl.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 992,
+    "sourceHeight": 2200,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "duhove-kvety",
+    "alt": "Dievča s dúhovými kvetmi namaľovanými na tvári",
+    "node": "11292:609",
+    "source": "fotky-originaly/figma-fotografie/duhove-kvety.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 1154,
+    "sourceHeight": 2048,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "oranzove-ruze",
+    "alt": "Oranžové ruže namaľované na ruke",
+    "node": "11292:620",
+    "source": "fotky-originaly/figma-fotografie/oranzove-ruze.png",
+    "sourceKind": "figma-context-asset",
+    "sourceWidth": 1153,
+    "sourceHeight": 2048,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  },
+  {
+    "id": "lucne-kvety",
+    "alt": "Biele lúčne kvety namaľované na ruke",
+    "node": "11292:520",
+    "source": "fotky-originaly/figma-fotografie/lucne-kvety.jpg",
+    "sourceKind": "verified-figma-export",
+    "sourceWidth": 1486,
+    "sourceHeight": 1998,
+    "verification": "Geometry compared directly with the full Figma design reference."
+  }
+]
