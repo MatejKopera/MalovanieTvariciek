@@ -825,6 +825,32 @@ button {
 .lightbox-close:hover {
   background: #ffffff20;
 }
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0 0 4px;
+  border: 0;
+  border-radius: 50%;
+  background: #100c16b3;
+  color: white;
+  font-size: 36px;
+  line-height: 1;
+}
+.lightbox-nav:hover {
+  background: #100c16e6;
+}
+.lightbox-previous {
+  left: 4px;
+}
+.lightbox-next {
+  right: 4px;
+}
 .lightbox-error {
   position: absolute;
   top: 100%;
@@ -1076,8 +1102,7 @@ strong {
   line-height: 55px;
 }
 .portfolio .section-heading p {
-  height: 47px;
-  max-width: 666px;
+  height: auto;
   margin-inline: auto;
 }
 .gallery-grid {

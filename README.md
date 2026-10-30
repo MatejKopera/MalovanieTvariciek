@@ -49,6 +49,8 @@ FormSubmit odosiela dopyt na existujúcu adresu Beáty. Povinné sú meno/firma 
 
 Galéria sťahuje veľkú fotografiu až po otvorení. Dialóg má priehľadné pozadie bez širokého obdĺžnika okolo fotky a vopred rezervované prirodzené rozmery. Počas načítania ukazuje indikátor; veľká fotografia sa objaví až po dekódovaní, jemným prechodom. Pri chybe zostáva dostupný náhľad a chybové hlásenie. Dokončenie starej požiadavky po zatvorení nemôže prepísať inú otvorenú fotku. Zatvorenie funguje tlačidlom, Escape alebo kliknutím mimo fotografie; Tab ostáva v dialógu a fokus sa vráti na pôvodný obrázok. Pri obmedzenom pohybe sa vypnú animácie, prechody aj plynulé posúvanie.
 
+Zväčšené fotografie na hlavnej stránke aj v galérii možno prepínať tlačidlami vľavo/vpravo alebo klávesmi ←/→ v poradí na stránke. Po poslednej nasleduje prvá a opačne. Pri zatvorení sa fokus vráti na pôvodne otvorený náhľad.
+
 ## Kontroly
 
 ```powershell

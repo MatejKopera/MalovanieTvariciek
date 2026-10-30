@@ -457,7 +457,8 @@
       ],
       "sourceOrientation": "normal",
       "matchedPoints": 852,
-      "medianErrorPx": 0.04882341953935786
+      "medianErrorPx": 0.04882341953935786,
+      "rightEdgeRepairFraction": 0.00234375
     }
   },
   {
@@ -1190,7 +1191,8 @@
       ],
       "sourceOrientation": "normal",
       "matchedPoints": 150,
-      "medianErrorPx": 0.31342468089172904
+      "medianErrorPx": 0.31342468089172904,
+      "rightEdgeRepairFraction": 0.006507592190889371
     }
   },
   {
@@ -1662,7 +1664,8 @@
       ],
       "sourceOrientation": "normal",
       "matchedPoints": 315,
-      "medianErrorPx": 0.14987594962595518
+      "medianErrorPx": 0.14987594962595518,
+      "rightEdgeRepairFraction": 0.0035671819262782403
     }
   },
   {
@@ -2589,7 +2592,8 @@
       ],
       "sourceOrientation": "normal",
       "matchedPoints": 290,
-      "medianErrorPx": 0.10331262391320647
+      "medianErrorPx": 0.10331262391320647,
+      "rightEdgeRepairFraction": 0.0025996533795493936
     }
   },
   {
@@ -2777,7 +2781,8 @@
       ],
       "sourceOrientation": "normal",
       "matchedPoints": 151,
-      "medianErrorPx": 0.1763975413586702
+      "medianErrorPx": 0.1763975413586702,
+      "rightEdgeRepairFraction": 0.0035671819262782403
     }
   },
   {
@@ -3061,7 +3066,8 @@
       ],
       "sourceOrientation": "normal",
       "matchedPoints": 252,
-      "medianErrorPx": 0.15190668312401592
+      "medianErrorPx": 0.15190668312401592,
+      "rightEdgeRepairFraction": 0.0035671819262782403
     }
   },
   {
@@ -3334,7 +3340,8 @@
       ],
       "sourceOrientation": "normal",
       "matchedPoints": 397,
-      "medianErrorPx": 0.12458184424172805
+      "medianErrorPx": 0.12458184424172805,
+      "rightEdgeRepairFraction": 0.0030272452068617556
     }
   },
   {

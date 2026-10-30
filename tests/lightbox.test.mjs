@@ -8,22 +8,33 @@ function setup() {
     requests = [],
     classes = new Set(),
     resize = {};
-  let focus;
+  let focus, activeElement;
   const image = { style: {}, hidden: false, addEventListener() {} };
   const error = { hidden: true };
   const close = {
     focus() {
       focus = "close";
+      activeElement = close;
     },
     addEventListener(type, fn) {
       events["button:" + type] = fn;
     },
   };
+  const previous = {
+    focus() { focus = "previous"; activeElement = previous; },
+    addEventListener(type, fn) { events["previous:" + type] = fn; },
+  };
+  const next = {
+    focus() { focus = "next"; activeElement = next; },
+    addEventListener(type, fn) { events["next:" + type] = fn; },
+  };
   const dialog = {
     open: false,
     attrs: {},
     querySelector: (s) =>
-      s === ".lightbox-image" ? image : s === ".lightbox-error" ? error : close,
+      ({ ".lightbox-image": image, ".lightbox-error": error,
+        ".lightbox-close": close, ".lightbox-previous": previous, ".lightbox-next": next })[s],
+    querySelectorAll: () => [close, previous, next],
     setAttribute(k, v) {
       this.attrs[k] = v;
     },
@@ -35,7 +46,7 @@ function setup() {
     },
     showModal() {
       this.open = true;
-      focus = "close";
+      close.focus();
     },
     close() {
       this.open = false;
@@ -48,7 +59,7 @@ function setup() {
       bottom: 500,
     }),
   };
-  const buttons = ["first", "second"].map((id) => ({
+  const buttons = ["first", "second", "third"].map((id) => ({
     dataset: { image: id + ".webp", width: "600", height: "900" },
     querySelector: () => ({
       alt: id,
@@ -60,6 +71,7 @@ function setup() {
     },
     focus() {
       focus = id;
+      activeElement = this;
     },
   }));
   const window = {
@@ -72,6 +84,7 @@ function setup() {
   };
   vm.runInNewContext(source, {
     document: {
+      get activeElement() { return activeElement; },
       querySelector: (s) => (s === ".lightbox" ? dialog : null),
       querySelectorAll: (s) => (s === ".gallery-card" ? buttons : []),
       addEventListener() {},
@@ -185,9 +198,74 @@ test("backdrop closes, image clicks do not, Tab remains in dialog, and focus ret
     },
   });
   assert.equal(prevented, true);
-  assert.equal(s.focus, "close");
+  assert.equal(s.focus, "previous");
   s.events.click({ target: s.dialog, clientX: 30, clientY: 30 });
   assert.equal(s.dialog.open, false);
   assert.equal(s.focus, "first");
   assert.equal(s.classes.has("modal-open"), false);
+});
+
+test("arrow buttons move in page order, wrap both ways, and return focus to the opener", async () => {
+  const s = setup();
+  const opening = s.buttons[0].click();
+  s.requests[0].resolve();
+  await opening;
+  for (const [control, expected] of [
+    ["previous", "third"], ["next", "first"], ["next", "second"],
+  ]) {
+    const pending = s.events[control + ":click"]();
+    assert.equal(s.dialog.open, true);
+    assert.equal(s.image.src, expected + "-thumb.webp");
+    assert.equal(s.image.alt, expected);
+    s.requests.at(-1).resolve();
+    await pending;
+    assert.equal(s.image.src, expected + ".webp");
+  }
+  s.dialog.close();
+  assert.equal(s.focus, "first");
+});
+
+test("keyboard arrows handle rapid navigation and stale downloads, including failures", async () => {
+  const s = setup();
+  s.buttons[0].click();
+  let prevented = 0;
+  const key = (key) => s.events.keydown({ key, preventDefault() { prevented++; } });
+  const second = key("ArrowRight");
+  const third = key("ArrowRight");
+  s.requests[0].resolve();
+  s.requests[1].reject(new Error("stale failure"));
+  await second;
+  assert.equal(s.image.src, "third-thumb.webp");
+  assert.equal(s.error.hidden, true);
+  assert.equal(s.dialog.attrs["aria-busy"], "true");
+  s.requests[2].resolve();
+  await third;
+  assert.equal(s.image.src, "third.webp");
+  const back = key("ArrowLeft");
+  s.requests[3].reject(new Error("offline"));
+  await back;
+  assert.equal(s.image.src, "second-thumb.webp");
+  assert.equal(s.error.hidden, false);
+  const retry = key("ArrowLeft");
+  assert.equal(s.error.hidden, true);
+  s.requests[4].resolve();
+  await retry;
+  assert.equal(s.image.src, "first.webp");
+  assert.equal(prevented, 4);
+});
+
+test("Tab and Shift+Tab cycle through close and both arrows", () => {
+  const s = setup();
+  s.buttons[0].click();
+  const tab = (shiftKey = false) => s.events.keydown({ key: "Tab", shiftKey, preventDefault() {} });
+  tab(true);
+  assert.equal(s.focus, "next");
+  tab();
+  assert.equal(s.focus, "close");
+  tab();
+  assert.equal(s.focus, "previous");
+  tab();
+  assert.equal(s.focus, "next");
+  tab();
+  assert.equal(s.focus, "close");
 });

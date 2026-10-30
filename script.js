@@ -33,6 +33,8 @@ window.matchMedia("(min-width: 1100px)").addEventListener("change", closeMenu);
 const lightbox = document.querySelector(".lightbox");
 const lightboxImage = lightbox?.querySelector(".lightbox-image");
 const lightboxError = lightbox?.querySelector(".lightbox-error");
+const galleryButtons = Array.from(document.querySelectorAll(".gallery-card"));
+let currentPhoto = 0;
 let lastGalleryButton;
 let photoRequest = 0;
 let photoRatio = 1;
@@ -52,36 +54,53 @@ function sizeLightboxPhoto() {
 window.addEventListener?.("resize", () => {
   if (lightbox?.open) sizeLightboxPhoto();
 });
-document.querySelectorAll(".gallery-card").forEach((button) => {
-  button.addEventListener("click", async () => {
+async function showLightboxPhoto(button) {
+  if (!lightbox) return;
+  const request = ++photoRequest;
+  const thumbnail = button.querySelector("img");
+  photoRatio = Number(button.dataset.width) / Number(button.dataset.height);
+  if (!Number.isFinite(photoRatio) || photoRatio <= 0) photoRatio = 1;
+  sizeLightboxPhoto();
+  lightboxError.hidden = true;
+  lightboxImage.hidden = false;
+  lightboxImage.alt = thumbnail.alt;
+  lightboxImage.src = thumbnail.currentSrc || thumbnail.src;
+  lightbox.setAttribute("aria-busy", "true");
+  if (!lightbox.open) lightbox.showModal();
+  document.body.classList.add("modal-open");
+  try {
+    const full = new Image();
+    full.src = button.dataset.image;
+    await full.decode();
+    if (request !== photoRequest || !lightbox.open) return;
+    lightboxImage.src = full.src;
+  } catch {
+    if (request !== photoRequest || !lightbox.open) return;
+    lightboxError.hidden = false;
+  } finally {
+    if (request === photoRequest) lightbox.removeAttribute("aria-busy");
+  }
+}
+galleryButtons.forEach((button, index) => {
+  button.addEventListener("click", () => {
     if (!lightbox || lightbox.open) return;
-    const request = ++photoRequest;
     lastGalleryButton = button;
-    const thumbnail = button.querySelector("img");
-    photoRatio = Number(button.dataset.width) / Number(button.dataset.height);
-    if (!Number.isFinite(photoRatio) || photoRatio <= 0) photoRatio = 1;
-    sizeLightboxPhoto();
-    lightboxError.hidden = true;
-    lightboxImage.hidden = false;
-    lightboxImage.alt = thumbnail.alt;
-    lightboxImage.src = thumbnail.currentSrc || thumbnail.src;
-    lightbox.setAttribute("aria-busy", "true");
-    lightbox.showModal();
-    document.body.classList.add("modal-open");
-    try {
-      const full = new Image();
-      full.src = button.dataset.image;
-      await full.decode();
-      if (request !== photoRequest || !lightbox.open) return;
-      lightboxImage.src = full.src;
-    } catch {
-      if (request !== photoRequest || !lightbox.open) return;
-      lightboxError.hidden = false;
-    } finally {
-      if (request === photoRequest) lightbox.removeAttribute("aria-busy");
-    }
+    currentPhoto = index;
+    return showLightboxPhoto(button);
   });
 });
+function moveLightboxPhoto(direction) {
+  if (!lightbox?.open || galleryButtons.length < 2) return;
+  currentPhoto =
+    (currentPhoto + direction + galleryButtons.length) % galleryButtons.length;
+  return showLightboxPhoto(galleryButtons[currentPhoto]);
+}
+lightbox
+  ?.querySelector(".lightbox-previous")
+  ?.addEventListener("click", () => moveLightboxPhoto(-1));
+lightbox
+  ?.querySelector(".lightbox-next")
+  ?.addEventListener("click", () => moveLightboxPhoto(1));
 lightboxImage?.addEventListener("error", () => {
   lightboxImage.hidden = true;
   lightboxError.hidden = false;
@@ -106,11 +125,21 @@ lightbox?.addEventListener("close", () => {
   document.body.classList.remove("modal-open");
   lastGalleryButton?.focus({ preventScroll: true });
 });
-// The close button is the only interactive element in this dialog.
 lightbox?.addEventListener("keydown", (event) => {
-  if (event.key === "Tab") {
+  if (event.altKey || event.ctrlKey || event.metaKey) return;
+  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
     event.preventDefault();
-    lightbox.querySelector(".lightbox-close").focus();
+    return moveLightboxPhoto(event.key === "ArrowLeft" ? -1 : 1);
+  }
+  if (event.key === "Tab") {
+    const controls = Array.from(lightbox.querySelectorAll("button"));
+    const current = controls.indexOf(document.activeElement);
+    const next =
+      current < 0
+        ? 0
+        : (current + (event.shiftKey ? -1 : 1) + controls.length) % controls.length;
+    event.preventDefault();
+    controls[next].focus();
   }
 });
 const bookingForm = document.querySelector("#booking-form");

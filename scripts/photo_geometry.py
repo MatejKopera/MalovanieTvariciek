@@ -21,7 +21,21 @@ def render_reference(image,layout,size):
     ia,ib,ic=e/det,-b/det,(b*f-e*c)/det
     id,ie,iff=-d/det,a/det,(d*c-a*f)/det
     sx,sy=layout['referenceSize'][0]/size[0],layout['referenceSize'][1]/size[1]
-    return canvas.transform(size,Image.Transform.AFFINE,(ia*sx,ib*sy,ic+pad,id*sx,ie*sy,iff+pad),Image.Resampling.BICUBIC)
+    result=canvas.transform(size,Image.Transform.AFFINE,(ia*sx,ib*sy,ic+pad,id*sx,ie*sy,iff+pad),Image.Resampling.BICUBIC)
+    return repair_export_edge(result,layout)
+
+
+def repair_export_edge(image,layout):
+    """Replace a documented export seam with adjacent pixels, without recropping."""
+    fraction=layout.get('rightEdgeRepairFraction',0)
+    if not fraction:return image
+    width,height=image.size
+    # Keep a small minimum for the seam's resampling/compression halo in thumbnails.
+    pixels=min(width-1,max(3,math.ceil(width*fraction)))
+    result=image.copy()
+    edge=image.crop((width-pixels-1,0,width-pixels,height))
+    result.paste(edge.resize((pixels,height)),(width-pixels,0))
+    return result
 
 def orientation(matrix):
     # Ignore the tiny floating-point cosine around 90 degrees.

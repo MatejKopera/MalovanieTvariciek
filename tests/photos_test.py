@@ -4,9 +4,18 @@ from PIL import Image,ImageDraw,ImageOps,ImageChops,ImageStat
 import json,sys,unittest
 from html.parser import HTMLParser
 R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'scripts'))
-from photo_geometry import orientation,orient,render_reference
+from photo_geometry import orientation,orient,render_reference,repair_export_edge
 
 class Geometry(unittest.TestCase):
+    def test_export_seam_repair_preserves_size_and_every_interior_pixel(self):
+        image=Image.new('RGB',(100,160),(72,129,210))
+        image.paste('white',(98,0,100,160))
+        layout={'rightEdgeRepairFraction':.02}
+        repaired=repair_export_edge(image,layout)
+        self.assertEqual(repaired.size,image.size)
+        self.assertEqual(repaired.crop((0,0,98,160)).tobytes(),image.crop((0,0,98,160)).tobytes())
+        self.assertEqual(repaired.getextrema(),((72,72),(129,129),(210,210)))
+
     def test_circle_is_not_stretched_by_card_crop(self):
         image=Image.new('RGB',(200,400),'white');ImageDraw.Draw(image).ellipse((50,150,150,250),fill='black')
         for size in [(150,200),(225,300)]:
@@ -29,6 +38,36 @@ class Geometry(unittest.TestCase):
         self.assertEqual(orientation([[-1,0,0],[0,1,0]]),'mirror')
 
 class GeneratedPhotographs(unittest.TestCase):
+    def test_every_resolution_is_free_of_abrupt_bright_export_edges(self):
+        slots=json.loads((R/'scripts/figma-photos.json').read_text(encoding='utf-8'))
+        for slot in slots:
+            for variant in slot['variants']:
+                with self.subTest(photo=variant['src']):
+                    image=Image.open(R/variant['src']).convert('RGB');w,h=image.size
+                    for offset in (0,1):
+                        outer=image.crop((w-offset-1,0,w-offset,h)).tobytes()
+                        inner=image.crop((w-offset-2,0,w-offset-1,h)).tobytes()
+                        # Measure a sudden blend towards white, including tinted seams.
+                        amount=sum((a-b)*(255-b) for a,b in zip(outer,inner))
+                        scale=sum((255-b)**2 for b in inner)
+                        self.assertLess(amount/max(1,scale),.04,
+                            'Abrupt bright seam in the last two columns')
+
+    def test_repaired_exports_have_no_bright_right_seam_in_any_resolution(self):
+        slots=json.loads((R/'scripts/figma-photos.json').read_text(encoding='utf-8'))
+        repaired=[s for s in slots if s['layout'].get('rightEdgeRepairFraction')]
+        self.assertEqual({s['node'] for s in repaired},
+            {'11292:520','11292:610','11292:625','11292:598',
+             '11292:606','11292:623','11292:616'})
+        for slot in repaired:
+            for variant in slot['variants']:
+                with self.subTest(photo=variant['src']):
+                    image=Image.open(R/variant['src']).convert('RGB');w,h=image.size
+                    outer=image.crop((w-1,0,w,h))
+                    inner=image.crop((w-4,0,w-3,h))
+                    error=ImageStat.Stat(ImageChops.difference(outer,inner)).mean
+                    self.assertLess(sum(error)/3,20,'A bright export seam is still visible')
+
     def test_html_links_each_thumbnail_to_matching_full_image_dimensions(self):
         slots={p['node']:p for p in json.loads((R/'scripts/figma-photos.json').read_text(encoding='utf-8'))}
         case=self
