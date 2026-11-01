@@ -30,6 +30,43 @@ document.addEventListener("keydown", (event) => {
   }
 });
 window.matchMedia("(min-width: 1100px)").addEventListener("change", closeMenu);
+
+// Follow local section links only; gallery and privacy pages keep their page links.
+const navigationSections = Array.from(
+  navigation?.querySelectorAll('a[href^="#"]') ?? [],
+).map((link) => ({ link, section: document.querySelector(link.getAttribute("href")) }))
+  .filter(({ section }) => section);
+if (navigationSections.length) {
+  const header = document.querySelector(".site-header");
+  let scrollUpdatePending = false;
+  function updateCurrentSection() {
+    const boundary = header.getBoundingClientRect().bottom + 32;
+    let current = navigationSections[0];
+    navigationSections.forEach((item) => {
+      if (item.section.getBoundingClientRect().top <= boundary) current = item;
+    });
+    // The last section may be too short to reach the top of a tall screen.
+    if (window.scrollY > 0 &&
+        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+      current = navigationSections[navigationSections.length - 1];
+    }
+    navigationSections.forEach(({ link }) => {
+      if (link === current.link) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+    scrollUpdatePending = false;
+  }
+  function scheduleSectionUpdate() {
+    if (scrollUpdatePending) return;
+    scrollUpdatePending = true;
+    window.requestAnimationFrame(updateCurrentSection);
+  }
+  window.addEventListener("scroll", scheduleSectionUpdate, { passive: true });
+  window.addEventListener("resize", scheduleSectionUpdate);
+  window.addEventListener("pageshow", scheduleSectionUpdate);
+  updateCurrentSection();
+}
+
 const lightbox = document.querySelector(".lightbox");
 const lightboxImage = lightbox?.querySelector(".lightbox-image");
 const lightboxError = lightbox?.querySelector(".lightbox-error");

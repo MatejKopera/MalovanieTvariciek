@@ -24,6 +24,7 @@
   --blush: #fff7fb;
   --gradient: linear-gradient(100deg, #82448a, #d65394);
   --container: 1216px;
+  --header-height: 80px;
   --font: Poppins, system-ui, sans-serif;
 }
 * {
@@ -35,7 +36,7 @@
 html {
   scrollbar-gutter: stable;
   scroll-behavior: smooth;
-  scroll-padding-top: 24px;
+  scroll-padding-top: calc(var(--header-height) + 16px);
 }
 body {
   margin: 0;
@@ -229,10 +230,12 @@ button {
 }
 /* Shared navigation and footer */
 .site-header {
-  height: 100px;
+  height: var(--header-height);
   background: white;
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 10;
+  box-shadow: 0 1px 0 #85468c0d, 0 4px 16px #58344a08;
 }
 .nav-wrap {
   height: 100%;
@@ -259,9 +262,11 @@ button {
   font-weight: 600;
   padding-block: 12px;
 }
-.main-nav a:hover,
-.main-nav a[aria-current] {
+.main-nav a:hover {
   color: #b83279;
+}
+.main-nav a[aria-current] {
+  color: #d1558d;
 }
 .nav-cta {
   white-space: nowrap;
@@ -1452,7 +1457,6 @@ strong {
   }
   .main-nav {
     gap: 30px;
-    transform: translateY(7.5px);
   }
   .main-nav a {
     font-size: 16px;
@@ -1477,19 +1481,14 @@ strong {
   .main-nav a:nth-child(5) {
     width: 68px;
   }
-  .main-nav a[aria-current] {
-    color: #000;
-  }
-  .main-nav a:first-child {
-    color: #d1558d;
-  }
   .brand {
-    transform: translateY(4.13px);
+    transform: none;
   }
   .nav-cta {
     width: 199px;
     height: 45px;
-    transform: translateY(2.5px);
+    position: relative;
+    top: 0;
     padding-inline: 20px;
   }
   .brand img {
@@ -1546,11 +1545,14 @@ strong {
   }
 }
 @media (max-width: 1099px) {
+  :root {
+    --header-height: 72px;
+  }
   h2 {
     font-size: 34px;
   }
   .site-header {
-    height: 86px;
+    height: var(--header-height);
   }
   .nav-wrap {
     padding: 0;
@@ -1578,7 +1580,7 @@ strong {
   .main-nav {
     display: none;
     position: absolute;
-    top: 86px;
+    top: 100%;
     left: 0;
     right: 0;
     margin: 0;
@@ -1588,6 +1590,10 @@ strong {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
+    max-height: calc(100vh - var(--header-height));
+    max-height: calc(100dvh - var(--header-height));
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
   .main-nav.is-open {
     display: flex;
@@ -1722,6 +1728,9 @@ strong {
   }
 }
 @media (max-width: 699px) {
+  :root {
+    --header-height: 64px;
+  }
   .container {
     width: calc(100% - 32px);
   }
@@ -1729,7 +1738,7 @@ strong {
     font-size: 30px;
   }
   .site-header {
-    height: 78px;
+    height: var(--header-height);
   }
   .brand {
     width: 215px;
@@ -1738,7 +1747,7 @@ strong {
     display: none;
   }
   .main-nav {
-    top: 78px;
+    top: 100%;
     padding-inline: 24px;
   }
   .hero {
@@ -2023,6 +2032,32 @@ strong {
   .lightbox::backdrop {
     transition: none !important;
     animation: none !important;
+  }
+}
+
+/* These brief interaction effects intentionally run independently of OS animation
+   settings. Important overrides only the reduced-motion reset above. */
+.button .arrow,
+.see-all > span {
+  transition: transform 180ms ease-out !important;
+}
+.button:focus-visible .arrow,
+.see-all:focus-visible > span {
+  transform: translateX(3px);
+}
+.occasion .design-icon {
+  transition: transform 200ms ease-out !important;
+}
+.menu-toggle span {
+  transition: transform 180ms ease-out, opacity 180ms ease-out !important;
+}
+@media (hover: hover) and (pointer: fine) {
+  .button:not(:disabled):hover .arrow,
+  .see-all:hover > span {
+    transform: translateX(3px);
+  }
+  .occasion:hover .design-icon {
+    transform: translateY(-3px);
   }
 }
 
