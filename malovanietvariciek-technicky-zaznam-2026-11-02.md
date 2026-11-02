@@ -348,3 +348,10 @@ Lokálne zjemnené tlačidlá cenníka z hrúbky 600 na 500. Číselné ceny zos
 ## 21. Spresnenie veľkosti číselných cien – 2. november 2026
 
 Podľa ďalšieho porovnania s exportom a pripomienky používateľa znížená desktopová veľkosť cien 50 €/hod a 35 €/hod z 22 na 20 px. Hrúbka zostáva 500, individuálna ponuka 16 px; mobilné pravidlo cien zostáva 19 px. Ide o vizuálny odhad z PNG. Zatiaľ lokálne, bez pushu.
+## 22. Schválené texty a typografia zverejnené – 2. november 2026
+
+Používateľ schválil push všetkých pripravených zmien. Pred commitom bol origin/main zhodný s lokálnou vetvou; 16 Node testov, kontrola syntaxe JavaScriptu a git diff --check prešli. Commit 8110e77 bol úspešne pushnutý.
+
+Po nasadení overené na produkčnej doméne: nové #domov, bodka v úvode, „Napíšte mi termín“, upravený formulárový popis, bežné meno prevádzkovateľky, samostatný kontakt a odstránená schválená veta. Hlavná stránka, galéria aj ochrana údajov vracajú HTTP 200. Verejné styles.css a script.js sa presne zhodujú s lokálnymi súbormi; tým sú potvrdené aj ceny 20 px, individuálna ponuka 16 px a upravená typografia ochrany údajov. HTML hlavnej stránky a ochrany údajov Cloudflare automaticky mení ochranou e-mailových adries (email-protection); preto sa nezhoduje bajt po bajte, konkrétne schválené zmeny boli overené samostatne. Formulár sa pri tejto kontrole neposielal.
+
+Tento dodatok nahrádza predchádzajúce poznámky o lokálnych nezverejnených zmenách v sekciách 18–21.
