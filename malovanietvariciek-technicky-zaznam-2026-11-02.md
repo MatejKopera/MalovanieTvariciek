@@ -321,3 +321,9 @@ Používateľ zároveň potvrdil, že pôvodné fotografické podklady má loká
 ## 16. Úprava metadát podľa používateľa – 2. november 2026
 
 Lokálne upravený title a og:title hlavnej stránky na „Maľovanie tváričiek | Maľovanie na tvár | Facepainting“. Meta description a og:description galérie skrátené na „Pozrite si maľovanie na tvár a ruky od Beáty Juritkovej.“. HTML kontrola potvrdila zhodné hodnoty bežných a sociálnych metadát. Viditeľný obsah stránky sa nemenil. Tieto úpravy zatiaľ neboli commitnuté ani pushnuté.
+
+## 17. Metadáta a automatický návrat nasadené – 2. november 2026
+
+Používateľ schválil push. Pred commitom git fetch potvrdil zhodu s origin/main. Všetkých 16 Node testov formulára a galérie znovu prešlo. Commit 562540b bol úspešne pushnutý do origin/main.
+
+Po nasadení živá kontrola potvrdila HTTP 200 na úvode s novým title „Maľovanie tváričiek | Maľovanie na tvár | Facepainting“, HTTP 200 na /galeria s novým popisom bez výpočtu motívov a HTTP 404 na skúšobnej neexistujúcej adrese s okamžitým meta refresh na /. Ide o návrat riadený prehliadačom, nie HTTP 301/302. Automatické presmerovanie v živom prehliadači nebolo v tomto kroku osobitne vizuálne overované. Verejná odozva a správny pokyn na návrat boli overené. Týmto sú prekonané poznámky o nezverejnenej úprave v predošlých sekciách. Potvrdenie doručenia skúšobného formulára do Gmailu stále čaká na používateľa.
