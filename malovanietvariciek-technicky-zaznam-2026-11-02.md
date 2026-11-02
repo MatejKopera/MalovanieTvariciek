@@ -277,3 +277,15 @@ Tento zápis vzniká pred commitom: úspech pushu ani dokončenie Cloudflare nas
 - Zistenie: `/galeria.html` sa presmerúva na `/galeria`. Preto v následnej úprave používajú canonical, Open Graph URL galérie a sitemap finálnu URL `https://malovanietvariciek.sk/galeria`. Týmto sa spresňujú pôvodné odporúčania adries s `.html`.
 - Cloudflare pridáva do robots.txt vlastné pravidlá pre robotov. V načítanej odpovedi bolo všeobecné prehľadávanie povolené. HTTP odpovede nemali X-Robots-Tag; obsahovali X-Content-Type-Options: nosniff. HSTS v týchto odpovediach nebolo prítomné.
 - Sitemap do Search Console zatiaľ neodoslaná; čaká na potvrdenie aktuálneho obsahu po nasadení.
+## 12. Nasadenie overené – 2. november 2026
+
+Oba commity `d6db200` a `15395d8` boli úspešne pushnuté do `origin/main`. Po dobehnutí nasadenia bola overená aj finálna oprava galérie:
+
+- `https://malovanietvariciek.sk/` – HTTP 200, canonical `https://malovanietvariciek.sk/`, bez starej Pages domény v HTML.
+- `https://malovanietvariciek.sk/galeria` – HTTP 200, canonical `https://malovanietvariciek.sk/galeria`, bez starej Pages domény v HTML.
+- `https://malovanietvariciek.sk/sitemap.xml` – HTTP 200, obsahuje produkčné URL `/` a `/galeria`, bez Pages domény.
+- `https://malovanietvariciek.sk/robots.txt` – HTTP 200, správny odkaz `Sitemap: https://malovanietvariciek.sk/sitemap.xml`, bez Pages domény; Cloudflare pridáva svoje pravidlá pre robotov.
+- Sociálny obrázok – HTTP 200 a Content-Type image/jpeg počas živej kontroly.
+- `https://www.malovanietvariciek.sk/?kontrola=1` – HTTP 301 na `https://malovanietvariciek.sk/?kontrola=1` počas živej kontroly.
+
+**Ďalší krok:** v Search Console odoslať `https://malovanietvariciek.sk/sitemap.xml` a skontrolovať URL `/` a `/galeria`. Tento krok ani skutočné doručenie formulára zatiaľ vykonané neboli. DNSSEC, držiteľ domény a automatické predlžovanie zostávajú bez nového potvrdenia. Tento dodatok je aktuálnym stavom a nahrádza poznámky o čakaní na push/nasadenie v starších sekciách.
