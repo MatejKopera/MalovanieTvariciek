@@ -289,3 +289,35 @@ Oba commity `d6db200` a `15395d8` boli úspešne pushnuté do `origin/main`. Po 
 - `https://www.malovanietvariciek.sk/?kontrola=1` – HTTP 301 na `https://malovanietvariciek.sk/?kontrola=1` počas živej kontroly.
 
 **Ďalší krok:** v Search Console odoslať `https://malovanietvariciek.sk/sitemap.xml` a skontrolovať URL `/` a `/galeria`. Tento krok ani skutočné doručenie formulára zatiaľ vykonané neboli. DNSSEC, držiteľ domény a automatické predlžovanie zostávajú bez nového potvrdenia. Tento dodatok je aktuálnym stavom a nahrádza poznámky o čakaní na push/nasadenie v starších sekciách.
+## 13. Dodatočný audit verejného webu – 2. november 2026
+
+**Search Console:** používateľ potvrdil stav sitemap „Úspech“ a odoslanie žiadosti o indexovanie hlavnej stránky. Screenshot živého testu galérie potvrdil úspešné načítanie, povolené prehľadávanie/indexovanie a správnu canonical `/galeria`. Odoslanie žiadosti pre galériu nie je zatiaľ výslovne potvrdené.
+
+**Výsledky auditu:**
+- Všetkých 172 odkazovaných podkladov (obrázky, fonty, CSS, JS) na verejnom webe odpovedalo HTTP 200 s ne-HTML typom obsahu. Navyše overená stránka index.html; prvotný pracovný výstup ju nesprávne zaradil medzi podklady, následná kontrola ju správne vyhodnotila ako HTML stránku.
+- Hlavná stránka, galéria, ochrana údajov, sitemap a robots.txt sú dostupné. Canonical a tituly hlavných stránok správne; noindex je iba na ochrane údajov. HTTP X-Robots-Tag indexovanie hlavných stránok neblokuje.
+- HTTP presmerúva na HTTPS (301). WWW presmerovanie zachováva cestu a query string. Galéria s .html a index.html presmerúvajú na finálne adresy (308).
+- Všetkých 16 testov formulára a galérie a 9 obrazových testov prešlo. Samostatne overených 102 obrazových variantov: integrita, rozmery a neprítomnosť EXIF.
+- scripts/check_site.py prešiel kontrolou všetkých štyroch HTML vrátane lokálne pripravenej 404, odkazov, kotiev, CSS, WebP a SVG, potom sa zastavil na už známom chýbajúcom origináli tiger.png. Celý skript teda zostáva neúspešný kvôli zdrojovým podkladom, nie verejným súborom.
+- Dva nezávislé DNS resolvery (Google, Cloudflare) nevrátili DS pre doménu. Verejná reťaz DNSSEC tým nie je potvrdená; treba preveriť Cloudflare DNSSEC a publikáciu DS u registrátora. Žiadne DNS zmeny sa nevykonali.
+- V HTTP odpovediach sú nosniff a strict-origin-when-cross-origin. HSTS, CSP a X-Frame-Options v kontrolovaných odpovediach neboli; ich zavedenie nie je súčasťou tohto auditu.
+
+**Nájdená chyba a lokálna oprava:** neexistujúca URL vracia úvodnú stránku s HTTP 200. Cloudflare Pages bez koreňového 404.html používa SPA fallback (potvrdené dokumentáciou https://developers.cloudflare.com/pages/configuration/serving-pages/). Pripravený 404.html s noindex, jedným H1, odkazom domov a absolútnymi cestami k podkladom. Kontrolný skript upravený pre koreňové odkazy. Oprava ešte nie je commitnutá ani nasadená; výsledný HTTP 404 treba potvrdiť po nasadení. Živý formulár sa neposielal; nové meranie výkonu ani vizuálny audit prehliadača sa v tomto kroku nevykonali.
+
+Podrobný pracovný výstup auditu je lokálne v ignorovanom .qa/live-audit-2026-11-02.json.
+## 14. Podklady fotografií a skutočný test formulára – 2. november 2026
+
+- Spresnenie podkladov: v aktuálnom pracovnom priečinku chýba všetkých 34 originálov uvedených vo figma-photo-sources.json, celý priečinok figma-fotografie nie je prítomný. Tieto zdroje sú ignorované Gitom. Lokálne sa nenašli ani dokumentované ZIP zálohy. Nie je potvrdené ich odstránenie; môžu zostať v inom pracovnom prostredí. Fotografia tiger sa stále používa v dvoch optimalizovaných webových súboroch, oba existujú. V tomto kroku sa žiadne fotografie nemažú ani negenerujú.
+- Na výslovný pokyn používateľa bol cez živý formulár odoslaný presne jeden skúšobný dopyt na existujúceho príjemcu beatka.juritkova@gmail.com. Meno: TEST – kontrola kontaktného formulára. Vyplnený e-mail test@example.com je rezervovaná testovacia adresa; správa jasne uvádza, že nejde o objednávku a nevyžaduje odpoveď.
+- Po čakaní formulár zobrazil potvrdenie „Ďakujem! Správa bola odoslaná. Ozvem sa ti čo najskôr.“ a vymazal polia. To potvrdzuje úspech odoslania podľa služby; doručenie do Gmailu čaká na potvrdenie používateľom. Požiadavka sa neopakovala.
+- Screenshot potvrdenia je lokálne .qa/form-submit-success-2026-11-02.png.
+- Používateľ sa pýta na výhody súčasného fallbacku úvodnej stránky; zverejnenie lokálnej opravy 404 zatiaľ neschválil. Oprava preto zostáva bez pushu.
+## 15. Automatický návrat z neexistujúcej adresy – 2. november 2026
+
+Používateľ uprednostnil návrat domov bez klikania. Lokálny 404.html teraz obsahuje okamžité presmerovanie prehliadača pomocou meta refresh `0; url=/` a záložný odkaz domov. Relatívny koreň zachová lokálny náhľad na localhoste a na produkčnej doméne otvorí https://malovanietvariciek.sk/. Kontrola HTML potvrdila refresh, noindex a záložný odkaz. Nejde o HTTP 301/302: Cloudflare pri neexistujúcej adrese odošle 404 dokument, ktorý prehliadač následne presmeruje na úvod. Nie je tým garantované konkrétne správanie indexovania Googlu. Existujúce súbory sa nemenia. Bez pushu/nasadenia; živý výsledok treba potvrdiť po zverejnení. Lokálny server zatiaľ pre neznáme URL vracia pôvodnú jednoduchú 404 odpoveď, náhľad upravenej stránky je priamo na /404.html.
+
+Používateľ zároveň potvrdil, že pôvodné fotografické podklady má lokálne na druhom počítači. Ich neprítomnosť v tomto checkoute teda nepredstavuje potvrdenú stratu originálov.
+
+## 16. Úprava metadát podľa používateľa – 2. november 2026
+
+Lokálne upravený title a og:title hlavnej stránky na „Maľovanie tváričiek | Maľovanie na tvár | Facepainting“. Meta description a og:description galérie skrátené na „Pozrite si maľovanie na tvár a ruky od Beáty Juritkovej.“. HTML kontrola potvrdila zhodné hodnoty bežných a sociálnych metadát. Viditeľný obsah stránky sa nemenil. Tieto úpravy zatiaľ neboli commitnuté ani pushnuté.

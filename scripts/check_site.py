@@ -31,7 +31,7 @@ for name,p in pages.items():
     for ref in p.refs:
         u=urlsplit(ref)
         if u.scheme or u.netloc: continue
-        target=unquote(u.path) or name
+        target=unquote(u.path).lstrip('/') or ('index.html' if u.path.startswith('/') else name)
         assert not any(x in target for x in ['fotky-originaly','figma-export']), ref
         assert (ROOT/target).is_file(), f'Missing file: {ref} on {name}'
         if u.fragment and target in pages: assert u.fragment in pages[target].ids, f'Missing anchor: {ref}'
