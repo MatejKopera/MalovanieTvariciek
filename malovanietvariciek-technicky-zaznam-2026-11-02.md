@@ -327,3 +327,24 @@ Lokálne upravený title a og:title hlavnej stránky na „Maľovanie tváričie
 Používateľ schválil push. Pred commitom git fetch potvrdil zhodu s origin/main. Všetkých 16 Node testov formulára a galérie znovu prešlo. Commit 562540b bol úspešne pushnutý do origin/main.
 
 Po nasadení živá kontrola potvrdila HTTP 200 na úvode s novým title „Maľovanie tváričiek | Maľovanie na tvár | Facepainting“, HTTP 200 na /galeria s novým popisom bez výpočtu motívov a HTTP 404 na skúšobnej neexistujúcej adrese s okamžitým meta refresh na /. Ide o návrat riadený prehliadačom, nie HTTP 301/302. Automatické presmerovanie v živom prehliadači nebolo v tomto kroku osobitne vizuálne overované. Verejná odozva a správny pokyn na návrat boli overené. Týmto sú prekonané poznámky o nezverejnenej úprave v predošlých sekciách. Potvrdenie doručenia skúšobného formulára do Gmailu stále čaká na používateľa.
+
+## 18. Zrozumiteľná kotva Domov – 2. november 2026
+
+Na požiadavku používateľa lokálne zmenené id hlavného obsahu úvodnej stránky z main na domov a všetky jej odkazy #main na #domov (logá, navigácia, pätička a preskočenie na obsah). Kontrola potvrdila existenciu všetkých lokálnych kotiev. Galéria a ochrana údajov si ponechávajú vlastnú internú kotvu #main pre preskočenie na ich obsah. Canonical sa nemení. Zatiaľ bez commitu/pushu.
+
+## 19. Schválené textové a vizuálne úpravy podľa exportov – 2. november 2026
+
+Používateľ vybral rozdiely z dvoch lokálnych PNG exportov. Lokálne upravené:
+- Bodka po „Ahoj, volám sa Beáta.“ a nový začiatok odseku „Ponúkam…“.
+- „Napíšte mi termín“; ponechané „vaše predstavy“, správne telefónne číslo a veľké K v Kontakt. Formulár má „Meno a priezvisko / názov spoločnosti“; ostatné popisy už mali bežné písanie a medzery okolo lomiek.
+- Vykanie doplnené aj do úspešného hlásenia formulára („Ozvem sa vám…“) a chyby galérie („Skúste…“) na oboch stránkach.
+- V ochrane údajov meno prevádzkovateľky bežným písmom a kontakt v samostatnom odseku. Na výslovný pokyn odstránená veta o podaní sťažnosti na úrad; nejde o právne posúdenie úplnosti dokumentu. Cookies odkaz sa nepridával.
+- Odkazy v texte ochrany údajov čierne a podčiarknuté. Podnadpisy majú jednotnú hrúbku 600; hlavný nadpis tiež 600. Šírka textu, riadkovanie a rozostupy priblížené referencii. Telefón sa na mobile neláme uprostred čísla.
+
+Kontroly: 16 existujúcich Node testov prešlo, syntax script.js platná, štyri HTML stránky majú platné lokálne odkazy/kotvy a jeden H1. Živý lokálny náhľad overený pri šírkach 1440 a 390 px bez vodorovného presahu; všetky štyri právne podnadpisy majú vypočítanú hrúbku 600. Formulár sa neposielal. Screenshot lokálne v .qa/legal-text-review-2026-11-02.png. Zmeny neboli commitnuté ani pushnuté; naďalej je lokálne pripravená aj predchádzajúca zmena kotvy #domov.
+## 20. Typografia cien podľa návrhu – 2. november 2026
+
+Lokálne zjemnené tlačidlá cenníka z hrúbky 600 na 500. Číselné ceny zostávajú 22 px na desktope (19 px na mobile); „Individuálna ponuka“ má samostatne 16 px. V prehliadači overené vypočítané hodnoty pri šírkach 1440 a 390 px; žiadny vodorovný presah stránky ani textu tlačidiel. Znenie a sumy sa nemenili. git diff --check bez chýb. Screenshot .qa/pricing-text-review-2026-11-02.png. Zatiaľ bez commitu/pushu.
+## 21. Spresnenie veľkosti číselných cien – 2. november 2026
+
+Podľa ďalšieho porovnania s exportom a pripomienky používateľa znížená desktopová veľkosť cien 50 €/hod a 35 €/hod z 22 na 20 px. Hrúbka zostáva 500, individuálna ponuka 16 px; mobilné pravidlo cien zostáva 19 px. Ide o vizuálny odhad z PNG. Zatiaľ lokálne, bez pushu.

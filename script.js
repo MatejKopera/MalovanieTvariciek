@@ -219,7 +219,7 @@ bookingForm?.addEventListener("submit", async (event) => {
     });
     formStatus.classList.remove("is-error");
     formStatus.textContent =
-      "Ďakujem! Správa bola odoslaná. Ozvem sa ti čo najskôr.";
+      "Ďakujem! Správa bola odoslaná. Ozvem sa vám čo najskôr.";
   } catch {
     formStatus.classList.add("is-error");
     formStatus.textContent = needsActivation
