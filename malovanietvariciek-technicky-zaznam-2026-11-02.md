@@ -268,3 +268,12 @@ Administratívne body 2–4 neboli v účtoch vykonané ani potvrdené. Google S
 Používateľ schválil commit a push pripravených zmien. `git fetch origin` prešiel; pred commitom bola lokálna vetva `main` zhodná s `origin/main` (žiadne rozdielne commity). Rozsah: sitemap, robots.txt, canonical a Open Graph údaje, URL služby v JSON-LD, pole `_url` formulára, README a tento záznam. Funkčnosť formulára a galérie overilo 16 testov počas prípravy; zistené obmedzenie kontroly originálnych fotografií zostáva uvedené v sekcii 9.
 
 Tento zápis vzniká pred commitom: úspech pushu ani dokončenie Cloudflare nasadenia týmto ešte nie sú potvrdené. Po pushi treba overiť verejné súbory, HTTP hlavičky, canonical a presmerovania. Sitemap do Search Console zatiaľ nebola odoslaná; živý e-mailový test neprebehol.
+## 11. Prvý push a živá kontrola – 2. november 2026
+
+- Commit `d6db200` bol úspešne pushnutý do `origin/main`.
+- Verejný web sa podarilo načítať po povolení sieťového prístupu. Predchádzajúce ENOTFOUND teda nebolo dôkazom chyby domény.
+- Prvá kontrola po pushi ešte vrátila starú sitemap, robots.txt a canonical; dokončenie nasadenia vtedy nebolo potvrdené.
+- Hlavná stránka, galéria, sitemap, robots.txt a sociálny obrázok odpovedali 200 po prípadnom presmerovaní. `www` odpovedalo 301 na doménu bez www a zachovalo query string.
+- Zistenie: `/galeria.html` sa presmerúva na `/galeria`. Preto v následnej úprave používajú canonical, Open Graph URL galérie a sitemap finálnu URL `https://malovanietvariciek.sk/galeria`. Týmto sa spresňujú pôvodné odporúčania adries s `.html`.
+- Cloudflare pridáva do robots.txt vlastné pravidlá pre robotov. V načítanej odpovedi bolo všeobecné prehľadávanie povolené. HTTP odpovede nemali X-Robots-Tag; obsahovali X-Content-Type-Options: nosniff. HSTS v týchto odpovediach nebolo prítomné.
+- Sitemap do Search Console zatiaľ neodoslaná; čaká na potvrdenie aktuálneho obsahu po nasadení.
