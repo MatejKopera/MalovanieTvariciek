@@ -67,4 +67,4 @@ Vizuálne overovať obe stránky pri šírkach 360, 390, 768, 1024 a 1440 px. V�
 
 Projekt je statický web bez build kroku. V Cloudflare Pages použite Git integráciu, produkčnú vetvu `main` a koreňový priečinok repozitára ako výstupný priečinok.
 
-Formulár používa aktuálnu verejnú doménu `https://malovanietvariciek.pages.dev/`. Canonical, sociálne metadáta a sitemap zatiaľ obsahujú pôvodnú doménu `https://malovanie-tvariciek.pages.dev/`. Pri požiadavke na aktiváciu FormSubmit treba potvrdiť aktivačný e-mail pre verejný web. Do commitu nepridávať originály, exporty Figmy ani pomocný priečinok `.qa/`.
+Formulár (pole `_url`), canonical, sociálne metadáta, štruktúrované údaje, robots.txt a sitemap používajú produkčnú doménu `https://malovanietvariciek.sk/`. Históriu úprav a overenia nasadenia sleduje technický záznam. Po nasadení treba overiť aktiváciu FormSubmit a skutočné doručenie formulára pre novú doménu. Pri požiadavke na aktiváciu FormSubmit treba potvrdiť aktivačný e-mail pre verejný web. Do commitu nepridávať originály, exporty Figmy ani pomocný priečinok `.qa/`.
