@@ -1959,14 +1959,20 @@ strong {
   transition: transform 180ms ease-out;
 }
 .button:focus-visible .arrow {
-  transform: translateX(3px);
+  transform: translateX(5px);
 }
 .menu-toggle span {
   transition: transform 180ms ease-out, opacity 180ms ease-out;
 }
 @media (hover: hover) and (pointer: fine) {
+  .price-card {
+    transition: transform 200ms ease-out;
+  }
+  .price-card:hover {
+    transform: translateY(-5px);
+  }
   .button:not(:disabled):hover .arrow {
-    transform: translateX(3px);
+    transform: translateX(5px);
   }
 }
 
