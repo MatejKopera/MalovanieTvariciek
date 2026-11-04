@@ -67,7 +67,7 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
   </head>
-  <body>
+  <body class="home-page">
     <a class="skip-link" href="#domov">Preskočiť na obsah</a>
     <header class="site-header">
       <div class="container nav-wrap">
@@ -113,7 +113,8 @@
           <img src="fotky-web/ozdoba-uvod.svg" width="167.615" height="189.003" alt="" />
         </span>
         <picture class="hero-art"
-          ><source
+          ><source media="(min-width: 1280px)" srcset="fotky-web/uvod-figma-desktop.webp" />
+          <source
             media="(max-width: 1279px)"
             srcset="
               fotky-web/uvod-mobil-480.webp 480w,
@@ -139,10 +140,9 @@
             </h1>
             <p class="intro">Ahoj, volám sa Beáta.</p>
             <p>
-              Ponúkam <strong>profesionálne maľovanie na tvár</strong> pre
-              deti, ale aj dospelých. Mám
-              <strong>niekoľkoročné skúsenosti</strong>, ktorými rada skrášlim
-              vašu oslavu, akciu alebo iné podujatie.
+              Ponúkam <strong>profesionálne maľovanie</strong> na tvár pre deti,<br class="hero-line-break" />
+              ale aj dospelých. Mám <strong>niekoľkoročné skúsenosti</strong>, ktorými<br class="hero-line-break" />
+              rada skrášlim vašu oslavu, akciu alebo iné podujatie.
             </p>
             <div class="hero-actions">
               <a class="button" href="galeria.html"
@@ -186,7 +186,7 @@
             <p>
               Veľmi rada maľujem kvetinové motívy a tigríkov, ale v ponuke mám
               širokú škálu predlôh.<br />
-              <strong>Používam farby</strong>, ktoré spĺňajú platné európske požiadavky na kozmetické výrobky.
+              Používam <strong>farby</strong>, ktoré <strong>spĺňajú platné európske požiadavky</strong> na kozmetické výrobky.
             </p>
           </div>
           <div class="gallery-grid">
@@ -305,15 +305,14 @@
               />
             </button>
           </div>
-          <a class="text-link see-all" href="galeria.html"
+          <a class="button see-all" href="galeria.html"
             >Galéria tváričiek
-            <span aria-hidden="true"
+            <span class="arrow" aria-hidden="true"
               ><img
-                src="fotky-web/figma/c85bc.svg"
+                src="fotky-web/figma/f15f8.svg"
                 alt=""
-                width="6.28066"
-                height="12.0001"
-                data-figma-node="11292:512"
+                width="8.3171"
+                height="16"
                 style="left: 0px; top: 0px; transform: scaleX(-1)" /></span
           ></a>
         </div>
@@ -632,7 +631,7 @@
                     style="left: 0px; top: 0px" /></span
               ></span>
               <h3>Školské akcie</h3>
-              <p>Školy, škôlky, deň detí</p>
+              <p>Školy, škôlky,<br />deň detí</p>
             </article>
           </div>
         </div>
@@ -647,8 +646,8 @@
             <span class="pill">Výber balíčka</span>
             <h2 id="pricing-title">Orientačný cenník</h2>
             <p>
-              <strong>Všetky farby</strong> na tvár a výbava na maľovanie<br />
-              sú zahrnuté v cene.
+              Všetky farby na tvár a výbava na maľovanie<br />
+              sú <strong>zahrnuté v cene.</strong>
             </p>
           </div>
           <div class="pricing-grid">
@@ -884,7 +883,7 @@
                 </li>
                 <li>
                   <a
-                    href="https://www.instagram.com/malovanie_na_tvar_bebe/"
+                    href="https://www.instagram.com/malovanie_tvariciek/"
                     target="_blank"
                     rel="noopener noreferrer"
                     ><span
@@ -904,7 +903,7 @@
                             left: 1.96875px;
                             top: 1.96875px;
                           " /></span></span
-                    >Malovanie_na_tvar_bebe<span class="sr-only">
+                    >Malovanie_tvariciek<span class="sr-only">
                       (nová karta)</span
                     ></a
                   >
@@ -938,7 +937,7 @@
                   autocomplete="off" /></label
               ><label
                 ><span class="field-label"
-                  >Meno a priezvisko / názov spoločnosti
+                  >Meno a priezvisko/názov spoločnosti
                   <span class="sr-only">(povinné)</span></span
                 ><input
                   type="text"
@@ -964,9 +963,9 @@
               </div>
               <label
                 ><span class="field-label"
-                  >Detaily / dodatočné informácie
+                  >Detaily/dodatočné informácie
                   <span class="label-detail"
-                    >(počet detí / tematika maľovania...)</span
+                    >(počet detí/tematika maľovania...)</span
                   ></span
                 ><textarea name="Sprava" rows="3" maxlength="5000"></textarea>
               </label>
@@ -1039,7 +1038,7 @@
                     data-figma-node="11292:474"
                     style="left: 0px; top: 0px" /></span></span></a
             ><a
-              href="https://www.instagram.com/malovanie_na_tvar_bebe/"
+              href="https://www.instagram.com/malovanie_tvariciek/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram – otvorí sa v novej karte"

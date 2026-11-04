@@ -35,7 +35,6 @@
 }
 html {
   scrollbar-gutter: stable;
-  scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + 16px);
 }
 body {
@@ -193,19 +192,6 @@ button {
   background: white;
   color: var(--purple);
   box-shadow: 0 1px 12px #a76b9d18;
-}
-.text-link {
-  color: #a82f6a;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 44px;
-}
-.text-link span {
-  font-size: 28px;
-  font-weight: 400;
 }
 .pill {
   display: inline-block;
@@ -405,9 +391,6 @@ button {
   gap: 14px;
   margin-top: 24px;
 }
-.hero-actions .button {
-  padding-inline: 22px;
-}
 .portfolio {
   padding: 58px 0 48px;
 }
@@ -563,11 +546,8 @@ button {
 }
 .price-button {
   width: 100%;
-  min-height: 40px;
   margin-top: auto;
-  padding: 5px 8px;
-  font-size: 23px;
-  letter-spacing: -0.02em;
+  padding-inline: 8px;
 }
 .lower-page {
   position: relative;
@@ -729,12 +709,6 @@ button {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.button-submit {
-  font-size: 14px;
-  min-height: 36px;
-  padding: 6px 18px;
-  gap: 8px;
-}
 .form-status {
   font-size: 14px;
   line-height: 1.5;
@@ -785,19 +759,14 @@ button {
   max-height: none;
   overflow: visible;
 }
-.lightbox[open] {
-  animation: photo-enter 160ms ease-out;
-}
 .lightbox::backdrop {
   background: #100c16d9;
-  animation: photo-backdrop 160ms ease-out;
 }
 .lightbox-image {
   max-width: 100%;
   border-radius: 10px;
   object-fit: contain;
   opacity: 1;
-  transition: opacity 140ms ease-out;
 }
 .lightbox[aria-busy="true"] .lightbox-image {
   opacity: 0;
@@ -812,7 +781,6 @@ button {
   border: 2px solid #ffffff55;
   border-top-color: #fff;
   border-radius: 50%;
-  animation: photo-loading 700ms linear infinite;
 }
 .lightbox-close {
   position: absolute;
@@ -865,29 +833,6 @@ button {
   padding: 8px;
   font-size: 12px;
   text-align: center;
-}
-@keyframes photo-enter {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes photo-backdrop {
-  from {
-    background: #100c1600;
-  }
-  to {
-    background: #100c16d9;
-  }
-}
-@keyframes photo-loading {
-  to {
-    transform: rotate(360deg);
-  }
 }
 /* Privacy document */
 .legal-page .header-logo {
@@ -1008,16 +953,9 @@ strong {
   font-size: 0;
   line-height: 0;
 }
-.arrow img,
-.see-all span img {
+.arrow img {
   position: absolute;
   max-width: none;
-}
-.see-all span {
-  position: relative;
-  display: block;
-  width: 6.28066px;
-  height: 12.0001px;
 }
 .design-icon,
 .price-icon,
@@ -1088,13 +1026,18 @@ strong {
   margin: 24px 0 0 -10px;
   gap: 12px;
 }
-.hero-actions .button {
-  width: 199px;
-  padding: 9px 13px;
-  gap: 20px;
-}
 .hero-actions .button-white {
   box-shadow: 0 0 12.6px #f2dbe7;
+}
+.hero-actions .button-white .button-label {
+  background: var(--gradient);
+  background-clip: text;
+  color: transparent;
+}
+@media (forced-colors: active) {
+  .hero-actions .button-white .button-label {
+    color: inherit;
+  }
 }
 .portfolio {
   padding: 58px 0 59px;
@@ -1131,10 +1074,10 @@ strong {
 }
 .see-all {
   margin-top: 40px;
-  min-height: 25px;
-  line-height: 25px;
-  font-weight: 500;
-  color: #d1558d;
+  width: 196px;
+  max-width: 100%;
+  gap: 15px;
+  padding-inline: 12px;
 }
 .services {
   padding: 60px 0 61px;
@@ -1179,7 +1122,7 @@ strong {
 .price-heading h3 {
   font-size: 20px;
   line-height: 29px;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 5px;
   white-space: nowrap;
 }
@@ -1199,7 +1142,6 @@ strong {
   font-size: 20px;
   font-weight: 500;
   padding: 5px 0;
-  letter-spacing: 0;
 }
 .price-2 .price-button {
   font-size: 16px;
@@ -1326,15 +1268,6 @@ strong {
 .form-bottom {
   justify-content: flex-end;
   min-width: 0;
-}
-.button-submit {
-  width: 116px;
-  height: 30px;
-  min-height: 30px;
-  padding: 2px 13px;
-  font-size: 16px;
-  line-height: 25px;
-  gap: 10px;
 }
 .form-status:not([hidden]) {
   position: relative;
@@ -1645,10 +1578,6 @@ strong {
     gap: 10px;
     flex-wrap: wrap;
   }
-  .hero-actions .button {
-    font-size: 13px;
-    min-height: 44px;
-  }
   .gallery-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 24px;
@@ -1785,10 +1714,6 @@ strong {
   .hero-actions {
     gap: 12px;
     margin-top: 22px;
-  }
-  .hero-actions .button {
-    font-size: 13px;
-    padding-inline: 17px;
   }
   .hero-art {
     position: relative;
@@ -1951,9 +1876,6 @@ strong {
     grid-template-columns: 1fr;
     gap: 17px;
   }
-  .button-submit {
-    min-height: 44px;
-  }
   .form-note {
     font-size: 10px;
   }
@@ -2026,42 +1948,25 @@ strong {
     font-size: 23px;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *:before,
-  *:after,
-  .lightbox::backdrop {
-    transition: none !important;
-    animation: none !important;
-  }
+.price-card.is-visible {
+  animation: price-card-highlight 480ms ease-out;
 }
-
-/* These brief interaction effects intentionally run independently of OS animation
-   settings. Important overrides only the reduced-motion reset above. */
-.button .arrow,
-.see-all > span {
-  transition: transform 180ms ease-out !important;
+@keyframes price-card-highlight {
+  from { box-shadow: inset 0 0 0 2px #85468c35; }
+  to { box-shadow: inset 0 0 0 2px transparent; }
 }
-.button:focus-visible .arrow,
-.see-all:focus-visible > span {
+.button .arrow {
+  transition: transform 180ms ease-out;
+}
+.button:focus-visible .arrow {
   transform: translateX(3px);
 }
-.occasion .design-icon {
-  transition: transform 200ms ease-out !important;
-}
 .menu-toggle span {
-  transition: transform 180ms ease-out, opacity 180ms ease-out !important;
+  transition: transform 180ms ease-out, opacity 180ms ease-out;
 }
 @media (hover: hover) and (pointer: fine) {
-  .button:not(:disabled):hover .arrow,
-  .see-all:hover > span {
+  .button:not(:disabled):hover .arrow {
     transform: translateX(3px);
-  }
-  .occasion:hover .design-icon {
-    transform: translateY(-3px);
   }
 }
 
@@ -2174,9 +2079,6 @@ strong {
   }
   .hero-actions {
     margin: 24px 0 0;
-  }
-  .hero-actions .button {
-    width: auto;
   }
   .portfolio .section-heading p,
   .services .section-heading p {
@@ -2315,10 +2217,6 @@ strong {
   .booking-form .field-label {
     white-space: normal;
   }
-  .button-submit {
-    height: 44px;
-    min-height: 44px;
-  }
   .footer-logo {
     width: 290px;
     height: 64px;
@@ -2374,16 +2272,44 @@ strong {
 }
 /* Updated desktop export; keep the established responsive layout below 1100px. */
 .hero-ornament { display: none; }
+.hero-line-break { display: none; }
 @media (min-width: 1280px) {
-  /* Keep the edge ornament independent of the responsive photo composition.
-     The original ornament remains baked into legacy WebP variants, so clip
-     their otherwise empty left portion without touching the photographs. */
-  .hero-art { clip-path: inset(0 0 0 35%); }
+  .hero { height: 517px; }
+  .hero-inner { padding-top: 105px; }
+  .hero-line-break { display: initial; }
+  .nav-wrap .brand img {
+    width: 240px;
+    height: auto;
+  }
+  .main-nav { margin-top: 8px; }
+  .portfolio { padding-bottom: 58px; }
+  .portfolio .section-heading { margin-bottom: 39px; }
+  .services { padding-bottom: 61px; }
+  .occasion-grid { margin-top: 52px; }
+  .price-card li::marker { font-size: 12px; }
+  .price-button {
+    width: auto;
+    margin-inline: 1px;
+  }
+  .steps-list {
+    grid-template-columns: minmax(0, 280fr) minmax(337px, 337fr) minmax(0, 425fr);
+    padding-inline: 47px;
+  }
+  .contact { padding-bottom: 52px; }
+  .contact-copy h3 { margin-top: 17px; }
+  /* Align the cropped desktop composition to the center of the Figma frame. */
+  .hero-art {
+    left: calc(50% - 112px);
+  }
+  .hero-art img {
+    width: auto;
+    max-width: none;
+  }
   .hero-ornament {
     display: block;
     position: absolute;
     left: -86px;
-    top: -84px;
+    top: -64px;
     width: 189.003px;
     height: 167.615px;
     pointer-events: none;
@@ -2397,14 +2323,6 @@ strong {
     transform: rotate(-90deg);
   }
 }
-.see-all {
-  min-height: 44px;
-  padding: 8px 22px;
-  border-radius: 999px;
-  background: var(--gradient);
-  color: white;
-}
-.see-all span img { filter: brightness(0) invert(1); }
 .contact-address {
   display: flex;
   align-items: flex-start;
@@ -2433,29 +2351,39 @@ strong {
 .form-bottom { align-items: flex-end; gap: 24px; justify-content: space-between; }
 .form-privacy { margin: 0; max-width: 365px; font-size: 10px; line-height: 1.5; color: var(--muted); }
 .form-privacy a { text-decoration: underline; text-underline-offset: 2px; }
+@media (min-width: 1100px) {
+  .booking-form {
+    min-height: 356px;
+    padding: 30px 31px 28px 30px;
+  }
+  .form-privacy {
+    align-self: flex-start;
+    margin-left: 13px;
+  }
+}
 .button-submit {
   flex-shrink: 0;
-  width: auto;
-  min-width: 140px;
+  min-width: 124px;
   max-width: 100%;
-  padding-inline: 16px;
+  gap: 13px;
+  padding-inline: 12px;
 }
-.button-label { white-space: nowrap; line-height: 1.25; transform: translateY(1px); }
+.button-label { white-space: nowrap; }
 .button-submit:disabled .arrow { display: none; }
 .hero-actions {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  flex-wrap: wrap;
+  justify-content: center;
   width: max-content;
   max-width: 100%;
+  margin-inline: auto;
 }
 .hero-actions .button {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 8.3171px;
-  width: auto;
   min-width: 199px;
-  gap: 16px;
+  padding-inline: 13px;
 }
-.hero-actions .button-label { text-align: center; }
+@media (min-width: 1280px) {
+  .hero-actions { margin: 21px 0 0 -10px; }
+}
 .footer-grid { grid-template-columns: 449px minmax(0, 1fr); row-gap: 60px; }
 .copyright { grid-column: 1 / -1; justify-self: center; justify-content: center; flex-wrap: wrap; width: 260px; margin: 0; }
 .copyright > img { width: 12px; height: 12px; }
@@ -2475,6 +2403,23 @@ strong {
   .footer-links nav { font-size: 16px; flex-wrap: wrap; }
   .footer-links nav a + a::before { padding-inline: 9px; }
 }
+@media (min-width: 1280px) {
+  .home-page .footer-grid {
+    grid-template-columns: 435px minmax(0, 1fr);
+    row-gap: 55px;
+  }
+  .home-page .footer-logo {
+    width: 435px;
+    margin-top: 10px;
+  }
+  .home-page .footer-logo::after {
+    top: 4px;
+    height: 69px;
+  }
+  .home-page .footer-links nav a + a::before { padding-inline: 14px; }
+  .home-page .copyright { row-gap: 0; }
+  .home-page .copyright .privacy-link { margin-top: 0; }
+}
 @media (max-width: 1099px) {
   .footer-grid { grid-template-columns: 280px minmax(0, 1fr); gap: 30px; }
   .footer-links nav { display: grid; grid-template-columns: repeat(3, max-content); gap: 12px 20px; }
@@ -2486,7 +2431,7 @@ strong {
 }
 @media (max-width: 699px) {
   .footer-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-  .hero-actions { grid-template-columns: minmax(0, 1fr); }
+  .hero-actions { flex-direction: column; }
   .copyright { justify-self: start; justify-content: flex-start; width: 100%; }
   .copyright .privacy-link { text-align: left; }
   .site-footer, .gallery-page .site-footer { padding-bottom: 32px; }

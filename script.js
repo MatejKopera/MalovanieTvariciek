@@ -67,6 +67,18 @@ if (navigationSections.length) {
   updateCurrentSection();
 }
 
+const priceCards = document.querySelectorAll(".price-card");
+if (priceCards.length && "IntersectionObserver" in window) {
+  const priceObserver = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (!isIntersecting) return;
+      target.classList.add("is-visible");
+      priceObserver.unobserve(target);
+    });
+  }, { threshold: 0.15 });
+  priceCards.forEach((card) => priceObserver.observe(card));
+}
+
 const lightbox = document.querySelector(".lightbox");
 const lightboxImage = lightbox?.querySelector(".lightbox-image");
 const lightboxError = lightbox?.querySelector(".lightbox-error");
