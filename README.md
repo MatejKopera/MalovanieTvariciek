@@ -53,6 +53,8 @@ Zväčšené fotografie na hlavnej stránke aj v galérii možno prepínať tla�
 
 ## Kontroly
 
+Pracovné náhľady, porovnania a pomocné audity z upratania 6. novembra 2026 sú v lokálnom archíve `.qa/archiv-upratanie-20261106.zip`. Archív zachováva pôvodné cesty a obsahuje aj vyradené písmo ExtraBold, starú šípku Galérie a pôvodný zoznam SVG podkladov.
+
 ```powershell
 node --test tests/form.test.mjs tests/lightbox.test.mjs
 python -m unittest discover -s tests -p photos_test.py
