@@ -1096,7 +1096,7 @@ strong {
   margin-bottom: 10px;
 }
 .occasion p {
-  font-weight: 400;
+  font-weight: 300;
   line-height: 24px;
   min-height: 55px;
 }
@@ -1132,7 +1132,7 @@ strong {
 }
 .price-card ul {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 26px;
   margin-bottom: 0;
 }
@@ -1205,7 +1205,7 @@ strong {
 }
 .contact-list {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 300;
 }
 .contact-list li a {
   min-height: 30px;
@@ -2301,8 +2301,16 @@ strong {
     grid-template-columns: minmax(0, 280fr) minmax(337px, 337fr) minmax(0, 425fr);
     padding-inline: 47px;
   }
-  .contact { padding-bottom: 52px; }
+  .contact { padding-bottom: 110px; }
   .contact-copy h3 { margin-top: 17px; }
+  .contact-list a[href^="tel:"] .contact-icon,
+  .contact-list a[href^="mailto:"] .contact-icon {
+    transform: translateY(1px);
+  }
+  .contact-list a[href*="facebook.com"] .contact-icon,
+  .contact-list a[href*="instagram.com"] .contact-icon {
+    transform: translateY(-2px);
+  }
   /* Align the cropped desktop composition to the center of the Figma frame. */
   .hero-art {
     left: calc(50% - 112px);
